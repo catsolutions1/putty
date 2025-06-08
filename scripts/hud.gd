@@ -13,8 +13,10 @@ var input_actions: Dictionary = {
 func _ready() -> void:
 	InputMap.load_from_project_settings()
 
+
 func _process(_delta: float) -> void:
 	_create_action_list()
+
 
 func _create_action_list() -> void:
 	for item in action_list.get_children():

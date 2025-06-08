@@ -167,19 +167,15 @@ var disabled_keys: PackedStringArray = [
 	"BraceRight",
 	"AsciiTilde",
 	"Yen",
-	"Section",
-	#including wasd fixes a bug with the first time you rebind a key
-	"W",
-	"A",
-	"S",
-	"D"
+	"Section"
 ]
 
 func _ready() -> void:
+	InputMap.load_from_project_settings()
 	_create_action_list()
 
+
 func _create_action_list() -> void:
-	InputMap.load_from_project_settings()
 	for item in action_list.get_children():
 		item.queue_free()
 	
@@ -199,12 +195,14 @@ func _create_action_list() -> void:
 		action_list.add_child(button)
 		button.pressed.connect(_on_input_button_pressed.bind(button, action))
 
+
 func _on_input_button_pressed(button, action) -> void:
 	if !is_remapping:
 		is_remapping = true
 		action_to_remap = action
 		remapping_button = button
 		button.find_child("label_input").text = "Awaiting input..."
+
 
 func _input(event: InputEvent) -> void:
 	if is_remapping:
@@ -214,7 +212,7 @@ func _input(event: InputEvent) -> void:
 			
 			if event is InputEventKey:
 				for i in disabled_keys.size():
-					if event.as_text_key_label() == disabled_keys[i]:
+					if event.as_text_physical_keycode() == disabled_keys[i]:
 						return
 			
 			if InputMap.action_has_event("move_up", event) || InputMap.action_has_event("move_left", event) || InputMap.action_has_event("move_right", event) || InputMap.action_has_event("move_down", event):
@@ -229,15 +227,39 @@ func _input(event: InputEvent) -> void:
 			remapping_button = null
 			
 			accept_event()
+	
+	#elif event is InputEventKey:
+		#if !InputMap.action_get_events("move_up"):
+			#if InputMap.action_has_event("move_left", event) || InputMap.action_has_event("move_right", event) || InputMap.action_has_event("move_down", event):
+				#return
+			#else:
+				#InputMap.action_add_event("move_up", event)
+		#elif !InputMap.action_get_events("move_left"):
+			#if InputMap.action_has_event("move_up", event) || InputMap.action_has_event("move_right", event) || InputMap.action_has_event("move_down", event):
+				#return
+			#else:
+				#InputMap.action_add_event("move_left", event)
+		#elif !InputMap.action_get_events("move_down"):
+			#if InputMap.action_has_event("move_left", event) || InputMap.action_has_event("move_right", event) || InputMap.action_has_event("move_up", event):
+				#return
+			#else:
+				#InputMap.action_add_event("move_down", event)
+		#elif !InputMap.action_get_events("move_right"):
+			#if InputMap.action_has_event("move_left", event) || InputMap.action_has_event("move_up", event) || InputMap.action_has_event("move_down", event):
+				#return
+			#else:
+				#InputMap.action_add_event("move_right", event)
+
 
 func _update_action_list(button, event) -> void:
 	button.find_child("label_input").text = event.as_text().trim_suffix(" (Physical)")
+
 
 func delete_key(x) -> void:
 	match x:
 		0:
 			if InputMap.action_get_events("move_up"):
-				disabled_keys.append(InputMap.action_get_events("move_up")[0].as_text_key_label())
+				disabled_keys.append(InputMap.action_get_events("move_up")[0].as_text_physical_keycode())
 				InputMap.action_erase_event("move_up", InputMap.action_get_events("move_up")[0])
 				is_remapping = false
 				_on_input_button_pressed(action_list.get_children()[0], "move_up")
@@ -245,7 +267,7 @@ func delete_key(x) -> void:
 				delete_key(x + 1)
 		1:
 			if InputMap.action_get_events("move_left"):
-				disabled_keys.append(InputMap.action_get_events("move_left")[0].as_text_key_label())
+				disabled_keys.append(InputMap.action_get_events("move_left")[0].as_text_physical_keycode())
 				InputMap.action_erase_event("move_left", InputMap.action_get_events("move_left")[0])
 				is_remapping = false
 				_on_input_button_pressed(action_list.get_children()[1], "move_left")
@@ -253,7 +275,7 @@ func delete_key(x) -> void:
 				delete_key(x + 1)
 		2:
 			if InputMap.action_get_events("move_down"):
-				disabled_keys.append(InputMap.action_get_events("move_down")[0].as_text_key_label())
+				disabled_keys.append(InputMap.action_get_events("move_down")[0].as_text_physical_keycode())
 				InputMap.action_erase_event("move_down", InputMap.action_get_events("move_down")[0])
 				is_remapping = false
 				_on_input_button_pressed(action_list.get_children()[2], "move_down")
@@ -261,7 +283,7 @@ func delete_key(x) -> void:
 				delete_key(x + 1)
 		3:
 			if InputMap.action_get_events("move_right"):
-				disabled_keys.append(InputMap.action_get_events("move_right")[0].as_text_key_label())
+				disabled_keys.append(InputMap.action_get_events("move_right")[0].as_text_physical_keycode())
 				InputMap.action_erase_event("move_right", InputMap.action_get_events("move_right")[0])
 				is_remapping = false
 				_on_input_button_pressed(action_list.get_children()[3], "move_right")
