@@ -6,173 +6,72 @@ extends Control
 var is_remapping: bool = false
 var action_to_remap = null
 var remapping_button = null
+var is_key_allowed: bool = false
 
 var input_actions: Dictionary = {
 	"move_up": "Move Up",
 	"move_left": "Move Left",
 	"move_down": "Move Down",
 	"move_right": "Move Right",
-	"shoot": "Shoot"
+	"shoot": "Shoot",
+	"delete_random_key": "Delete Key",
+	"spacebar": "Space"
 }
 
-#known bug: modifier keys can be combined with these to create new key labels
-var disabled_keys: PackedStringArray = [
-	"Escape",
-	"Tab",
-	"Backtab",
-	"Backspace",
-	"Enter",
-	"Kp Enter",
-	"Insert",
-	"Delete",
-	"Pause",
-	"Print",
-	"SysReq",
-	"Clear",
-	"Home",
-	"End",
-	"PageUp",
-	"PageDown",
-	"Shift",
-	"Ctrl",
-	"Windows",
-	"Alt",
-	"CapsLock",
-	"NumLock",
-	"ScrollLock",
-	"F1",
-	"F2",
-	"F3",
-	"F4",
-	"F5",
-	"F6",
-	"F7",
-	"F8",
-	"F9",
-	"F10",
-	"F11",
-	"F12",
-	"F13",
-	"F14",
-	"F15",
-	"F16",
-	"F17",
-	"F18",
-	"F19",
-	"F20",
-	"F21",
-	"F22",
-	"F23",
-	"F24",
-	"F25",
-	"F26",
-	"F27",
-	"F28",
-	"F29",
-	"F30",
-	"F31",
-	"F32",
-	"F33",
-	"F34",
-	"F35",
-	"Kp Multiply",
-	"Kp Divide",
-	"Kp Subtract",
-	"Kp Period",
-	"Kp Add",
-	"Kp 0",
-	"Kp 1",
-	"Kp 2",
-	"Kp 3",
-	"Kp 4",
-	"Kp 5",
-	"Kp 6",
-	"Kp 7",
-	"Kp 8",
-	"Kp 9",
-	"Menu",
-	"Hyper",
-	"Help",
-	"Back",
-	"Forward",
-	"Stop",
-	"Refresh",
-	"VolumeDown",
-	"VolumeMute",
-	"VolumeUp",
-	"MediaPlay",
-	"MediaStop",
-	"MediaPrevious",
-	"MediaNext",
-	"Media Record",
-	"HomePage",
-	"Favorites",
-	"Search",
-	"StandBy",
-	"OpenURL",
-	"LaunchMail",
-	"LaunchMedia",
-	"Launch0",
-	"Launch1",
-	"Launch2",
-	"Launch3",
-	"Launch4",
-	"Launch5",
-	"Launch6",
-	"Launch7",
-	"Launch8",
-	"Launch9",
-	"LaunchA",
-	"LaunchB",
-	"LaunchC",
-	"LaunchD",
-	"LaunchE",
-	"LaunchF",
-	"Globe",
-	"On-screen keyboard",
-	"JIS Eisu",
-	"JIS Kana",
-	"Unknown",
-	"Space",
-	"Exclam",
-	"QuoteDbl",
-	"NumberSign",
-	"Dollar",
-	"Percent",
-	"Ampersand",
-	"Apostrophe",
-	"ParenLeft",
-	"ParenRight",
-	"Asterisk",
-	"Plus",
-	"Comma",
-	"Minus",
-	"Period",
-	"Slash",
-	"Colon",
-	"Semicolon",
-	"Less",
-	"Equal",
-	"Greater",
-	"Question",
-	"At",
-	"BracketLeft",
-	"BackSlash",
-	"BracketRight",
-	"AsciiCircum",
-	"UnderScore",
-	"QuoteLeft",
-	"BraceLeft",
-	"Bar",
-	"BraceRight",
-	"AsciiTilde",
-	"Yen",
-	"Section"
+var deletable_actions: Dictionary = {
+	0: "move_up",
+	1: "move_left",
+	2: "move_down",
+	3: "move_right"
+}
+
+var allowed_keys: PackedStringArray = [
+	"A",
+	"B",
+	"C",
+	"D",
+	"E",
+	"F",
+	"G",
+	"H",
+	"I",
+	"J",
+	"K",
+	"L",
+	"M",
+	"N",
+	"O",
+	"P",
+	"Q",
+	"R",
+	"S",
+	"T",
+	"U",
+	"V",
+	"W",
+	"X",
+	"Y",
+	"Z",
+	"0",
+	"1",
+	"2",
+	"3",
+	"4",
+	"5",
+	"6",
+	"7",
+	"8",
+	"9",
+	"Up",
+	"Left",
+	"Down",
+	"Right"
 ]
 
 func _ready() -> void:
 	InputMap.load_from_project_settings()
 	_create_action_list()
+	SignalBus.DAMAGE_TAKEN.connect(_select_key_to_delete)
 
 
 func _create_action_list() -> void:
@@ -196,6 +95,10 @@ func _create_action_list() -> void:
 		button.pressed.connect(_on_input_button_pressed.bind(button, action))
 
 
+func _update_action_list(button, event) -> void:
+	button.find_child("label_input").text = event.as_text().trim_suffix(" (Physical)")
+
+
 func _on_input_button_pressed(button, action) -> void:
 	if !is_remapping:
 		is_remapping = true
@@ -211,9 +114,12 @@ func _input(event: InputEvent) -> void:
 				event.double_click = false
 			
 			if event is InputEventKey:
-				for i in disabled_keys.size():
-					if event.as_text_physical_keycode() == disabled_keys[i]:
-						return
+				is_key_allowed = false
+				for i in allowed_keys.size():
+					if event.as_text_physical_keycode() == allowed_keys[i]:
+						is_key_allowed = true
+				if !is_key_allowed:
+					return
 			
 			if InputMap.action_has_event("move_up", event) || InputMap.action_has_event("move_left", event) || InputMap.action_has_event("move_right", event) || InputMap.action_has_event("move_down", event):
 				return
@@ -228,69 +134,40 @@ func _input(event: InputEvent) -> void:
 			
 			accept_event()
 	
-	#elif event is InputEventKey:
-		#if !InputMap.action_get_events("move_up"):
-			#if InputMap.action_has_event("move_left", event) || InputMap.action_has_event("move_right", event) || InputMap.action_has_event("move_down", event):
-				#return
-			#else:
-				#InputMap.action_add_event("move_up", event)
-		#elif !InputMap.action_get_events("move_left"):
-			#if InputMap.action_has_event("move_up", event) || InputMap.action_has_event("move_right", event) || InputMap.action_has_event("move_down", event):
-				#return
-			#else:
-				#InputMap.action_add_event("move_left", event)
-		#elif !InputMap.action_get_events("move_down"):
-			#if InputMap.action_has_event("move_left", event) || InputMap.action_has_event("move_right", event) || InputMap.action_has_event("move_up", event):
-				#return
-			#else:
-				#InputMap.action_add_event("move_down", event)
-		#elif !InputMap.action_get_events("move_right"):
-			#if InputMap.action_has_event("move_left", event) || InputMap.action_has_event("move_up", event) || InputMap.action_has_event("move_down", event):
-				#return
-			#else:
-				#InputMap.action_add_event("move_right", event)
+	elif event is InputEventKey:
+		backup_rebind("move_up", event)
+		backup_rebind("move_left", event)
+		backup_rebind("move_down", event)
+		backup_rebind("move_right", event)
 
 
-func _update_action_list(button, event) -> void:
-	button.find_child("label_input").text = event.as_text().trim_suffix(" (Physical)")
+func _select_key_to_delete() -> void:
+	var x = deletable_actions.values().pick_random()
+	delete_key(x)
 
 
-func delete_key(x) -> void:
-	match x:
-		0:
-			if InputMap.action_get_events("move_up"):
-				disabled_keys.append(InputMap.action_get_events("move_up")[0].as_text_physical_keycode())
-				InputMap.action_erase_event("move_up", InputMap.action_get_events("move_up")[0])
-				is_remapping = false
-				_on_input_button_pressed(action_list.get_children()[0], "move_up")
+func delete_key(action) -> bool:
+	if InputMap.action_get_events(action):
+		for i in allowed_keys.size():
+			if allowed_keys[i] == InputMap.action_get_events(action)[0].as_text_physical_keycode():
+				allowed_keys.remove_at(i)
+				break
+		InputMap.action_erase_event(action, InputMap.action_get_events(action)[0])
+		is_remapping = false
+		_on_input_button_pressed(action_list.get_children()[deletable_actions.find_key(action)], action)
+		return true
+	else:
+		return false
+
+
+func backup_rebind(action, event) -> void:
+	var other_actions: PackedStringArray = []
+	for i in deletable_actions.size():
+		if action != deletable_actions.get(i):
+			other_actions.append(deletable_actions.get(i))
+	if !InputMap.action_get_events(action):
+			if InputMap.action_has_event(other_actions[0], event) || InputMap.action_has_event(other_actions[1], event) || InputMap.action_has_event(other_actions[2], event):
+				return
 			else:
-				delete_key(x + 1)
-		1:
-			if InputMap.action_get_events("move_left"):
-				disabled_keys.append(InputMap.action_get_events("move_left")[0].as_text_physical_keycode())
-				InputMap.action_erase_event("move_left", InputMap.action_get_events("move_left")[0])
-				is_remapping = false
-				_on_input_button_pressed(action_list.get_children()[1], "move_left")
-			else:
-				delete_key(x + 1)
-		2:
-			if InputMap.action_get_events("move_down"):
-				disabled_keys.append(InputMap.action_get_events("move_down")[0].as_text_physical_keycode())
-				InputMap.action_erase_event("move_down", InputMap.action_get_events("move_down")[0])
-				is_remapping = false
-				_on_input_button_pressed(action_list.get_children()[2], "move_down")
-			else:
-				delete_key(x + 1)
-		3:
-			if InputMap.action_get_events("move_right"):
-				disabled_keys.append(InputMap.action_get_events("move_right")[0].as_text_physical_keycode())
-				InputMap.action_erase_event("move_right", InputMap.action_get_events("move_right")[0])
-				is_remapping = false
-				_on_input_button_pressed(action_list.get_children()[3], "move_right")
-			else:
-				if !InputMap.action_get_events("move_up") && !InputMap.action_get_events("move_left") && !InputMap.action_get_events("move_down") && !InputMap.action_get_events("move_right"):
-					print("you lose")
-				else:
-					delete_key(0)
-		_:
-			print("bug detected")
+				InputMap.action_add_event(action, event)
+				_update_action_list(action_list.get_children()[int(deletable_actions.find_key(action))], event)

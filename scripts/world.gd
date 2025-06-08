@@ -5,10 +5,6 @@ extends Node2D
 
 var game_paused: bool = false
 
-func _ready() -> void:
-	player.damage_taken.connect(pause_menu.delete_key)
-
-
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
 		game_paused = !game_paused
