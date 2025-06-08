@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://cpckhwt04xt68"]
+
+[node name="component_health" type="Node2D"]

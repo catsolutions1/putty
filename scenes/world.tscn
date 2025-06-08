@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1saceosyax1p"]
+
+[ext_resource type="Script" uid="uid://dfwtjea780yda" path="res://scripts/world.gd" id="1_k0juu"]
+[ext_resource type="PackedScene" uid="uid://dkqrhpvbuyomv" path="res://scenes/debug_tilemap.tscn" id="2_71j4m"]
+[ext_resource type="PackedScene" uid="uid://1xxx18u4lumu" path="res://scenes/player.tscn" id="3_qfnet"]
+[ext_resource type="PackedScene" uid="uid://vjc61617wgqs" path="res://scenes/ui/input_settings.tscn" id="4_i7141"]
+[ext_resource type="PackedScene" uid="uid://bq10hkbsv5elf" path="res://scenes/ui/hud.tscn" id="5_71j4m"]
+
+[node name="world" type="Node2D"]
+script = ExtResource("1_k0juu")
+
+[node name="debug_tilemap" parent="." instance=ExtResource("2_71j4m")]
+
+[node name="player" parent="." instance=ExtResource("3_qfnet")]
+position = Vector2(368, 234)
+
+[node name="gui" type="CanvasLayer" parent="."]
+
+[node name="hud" parent="gui" instance=ExtResource("5_71j4m")]
+
+[node name="input_settings" parent="gui" instance=ExtResource("4_i7141")]
+visible = false
