@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=4 uid="uid://dkqrhpvbuyomv"]
+[gd_scene load_steps=6 format=3 uid="uid://dkqrhpvbuyomv"]
 
 [ext_resource type="Texture2D" uid="uid://ciavi47rf8fe7" path="res://assets/icon.svg" id="1_6gvx3"]
+[ext_resource type="Texture2D" uid="uid://dy1cqiyhbt6bl" path="res://assets/debug_tileset.png" id="2_8r3so"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8r3so"]
 texture = ExtResource("1_6gvx3")
@@ -133,10 +134,31 @@ texture = ExtResource("1_6gvx3")
 7:7/0 = 0
 7:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ga7el"]
+texture = ExtResource("2_8r3so")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
 [sub_resource type="TileSet" id="TileSet_ga7el"]
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_8r3so")
+sources/1 = SubResource("TileSetAtlasSource_ga7el")
 
 [node name="debug_tilemap" type="TileMapLayer"]
-tile_map_data = PackedByteArray("AAAFACQAAAAAAAAAAAAGACQAAAAAAAAAAAAGACMAAAAAAAAAAAAHACMAAAAAAAAAAAAIACMAAAAAAAAAAAAJACMAAAAAAAAAAAAKACMAAAAAAAAAAAALACMAAAAAAAAAAAAMACMAAAAAAAAAAAANACMAAAAAAAAAAAAOACMAAAAAAAAAAAAPACMAAAAAAAAAAAAQACMAAAAAAAAAAAARACMAAAAAAAAAAAASACMAAAAAAAAAAAATACQAAAAAAAAAAAAUACQAAAAAAAAAAAAVACQAAAAAAAAAAAAWACQAAAAAAAAAAAAXACQAAAAAAAAAAAAYACQAAAAAAAAAAAAZACQAAAAAAAAAAAAaACQAAAAAAAAAAAAbACMAAAAAAAAAAAAcACMAAAAAAAAAAAAdACMAAAAAAAAAAAAeACMAAAAAAAAAAAAfACMAAAAAAAAAAAAgACMAAAAAAAAAAAAhACMAAAAAAAAAAAAiACMAAAAAAAAAAAAjACMAAAAAAAAAAAAkACMAAAAAAAAAAAAlACMAAAAAAAAAAAAmACMAAAAAAAAAAAAnACMAAAAAAAAAAAAoACMAAAAAAAAAAAApACMAAAAAAAAAAAAqACMAAAAAAAAAAAArACMAAAAAAAAAAAAsACMAAAAAAAAAAAAtACMAAAAAAAAAAAAuACMAAAAAAAAAAAAvACMAAAAAAAAAAAAwACMAAAAAAAAAAAAxACMAAAAAAAAAAAAyACMAAAAAAAAAAAAzACMAAAAAAAAAAAA0ACMAAAAAAAAAAAA1ACMAAAAAAAAAAAA2ACMAAAAAAAAAAAA3ACQAAAAAAAAAAAA4ACQAAAAAAAAAAAA5ACQAAAAAAAAAAAA6ACQAAAAAAAAAAAA7ACQAAAAAAAAAAAA8ACQAAAAAAAAAAAA9ACQAAAAAAAAAAAA+ACQAAAAAAAAAAAA/ACQAAAAAAAAAAABAACQAAAAAAAAAAABBACQAAAAAAAAAAABCACQAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_ga7el")
