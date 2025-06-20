@@ -5,6 +5,11 @@ extends Node2D
 
 var game_paused: bool = false
 
+
+func _ready() -> void:
+	SignalBus.GOAL_REACHED.connect(_level_clear)
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
 		game_paused = !game_paused
@@ -15,3 +20,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			Engine.time_scale = 1
 			pause_menu.visible = false
 		get_tree().root.get_viewport().set_input_as_handled()
+
+
+func _level_clear() -> void:
+	print("level clear")
