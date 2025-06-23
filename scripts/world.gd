@@ -1,10 +1,8 @@
 extends Node2D
 
-@onready var player = $player
 @onready var pause_menu = $gui/input_settings
 
 var game_paused: bool = false
-
 
 func _ready() -> void:
 	SignalBus.GOAL_REACHED.connect(_level_clear)

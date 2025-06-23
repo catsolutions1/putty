@@ -1,29 +1,17 @@
-[gd_scene load_steps=8 format=4 uid="uid://d1saceosyax1p"]
+[gd_scene load_steps=5 format=3 uid="uid://d1saceosyax1p"]
 
 [ext_resource type="Script" uid="uid://dfwtjea780yda" path="res://scripts/world.gd" id="1_k0juu"]
-[ext_resource type="PackedScene" uid="uid://dkqrhpvbuyomv" path="res://scenes/debug_tilemap.tscn" id="2_71j4m"]
-[ext_resource type="PackedScene" uid="uid://1xxx18u4lumu" path="res://scenes/entities/player.tscn" id="3_qfnet"]
+[ext_resource type="PackedScene" uid="uid://moilnem53lri" path="res://scenes/levels/level_1.tscn" id="2_k0juu"]
 [ext_resource type="PackedScene" uid="uid://vjc61617wgqs" path="res://scenes/ui/input_settings.tscn" id="4_i7141"]
 [ext_resource type="PackedScene" uid="uid://bq10hkbsv5elf" path="res://scenes/ui/hud.tscn" id="5_71j4m"]
-[ext_resource type="PackedScene" uid="uid://b1wp3r6moywls" path="res://scenes/entities/goal.tscn" id="5_i7141"]
-[ext_resource type="PackedScene" uid="uid://bfhfhhkbc4iwi" path="res://scenes/entities/copycat.tscn" id="6_qfnet"]
 
 [node name="world" type="Node2D"]
 script = ExtResource("1_k0juu")
 
-[node name="debug_tilemap" parent="." instance=ExtResource("2_71j4m")]
-tile_map_data = PackedByteArray("AAABAAAAAQABAAAAAAACAAAAAQABAAAAAAADAAAAAQABAAAAAAAEAAAAAQABAAAAAAAFAAAAAQABAAAAAAAGAAAAAQABAAAAAAAHAAAAAQABAAAAAAAAAAAAAQAAAAAAAAAIAAAAAQABAAAAAAAJAAAAAQABAAAAAAAKAAAAAQABAAAAAAALAAAAAQABAAAAAAAMAAAAAQABAAAAAAANAAAAAQABAAAAAAAOAAAAAQABAAAAAAAPAAAAAQACAAAAAAAPAAoAAQACAAIAAAAOAAoAAQABAAIAAAANAAoAAQABAAIAAAAMAAoAAQABAAIAAAALAAoAAQABAAIAAAAKAAoAAQABAAIAAAAJAAoAAQABAAIAAAAIAAoAAQABAAIAAAAHAAoAAQABAAIAAAAGAAoAAQABAAIAAAAFAAoAAQABAAIAAAAEAAoAAQABAAIAAAADAAoAAQABAAIAAAACAAoAAQABAAIAAAABAAoAAQABAAIAAAAAAAkAAQAAAAEAAAAAAAgAAQAAAAEAAAAAAAcAAQAAAAEAAAAAAAQAAQAAAAEAAAAAAAMAAQAAAAEAAAAAAAIAAQAAAAEAAAAAAAEAAQAAAAEAAAAAAAUAAQAAAAEAAAAAAAYAAQAAAAEAAAAAAAoAAQAAAAIAAAAPAAEAAQACAAEAAAAPAAIAAQACAAEAAAAPAAMAAQACAAEAAAAPAAQAAQACAAEAAAAPAAUAAQACAAEAAAAPAAYAAQACAAEAAAAPAAcAAQACAAEAAAAPAAgAAQACAAEAAAAPAAkAAQACAAEAAAAFAAUAAQABAAEAAAALAAcAAQABAAEAAAA=")
-
-[node name="player" parent="." instance=ExtResource("3_qfnet")]
-position = Vector2(24, 24)
-
-[node name="copycat" parent="." instance=ExtResource("6_qfnet")]
-position = Vector2(88, 56)
-
-[node name="goal" parent="." instance=ExtResource("5_i7141")]
-position = Vector2(216, 72)
+[node name="level_1" parent="." instance=ExtResource("2_k0juu")]
 
 [node name="gui" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="hud" parent="gui" instance=ExtResource("5_71j4m")]
 metadata/_edit_lock_ = true

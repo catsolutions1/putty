@@ -13,8 +13,14 @@ const movement_map: Dictionary = {
 
 func _physics_process(_delta: float) -> void:
 	input_direction = move_component.get_input_direction(movement_map)
-	if input_direction != Vector2(0.0, 0.0):
+	if input_direction != Vector2.ZERO:
 		move_component.update_position(input_direction)
 	
-	if Input.is_action_just_pressed("delete_random_key"):
-		SignalBus.DAMAGE_TAKEN.emit()
+	#if Input.is_action_just_pressed("delete_random_key"):
+		#SignalBus.DAMAGE_TAKEN.emit()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if !body.is_in_group("player") && global_position == body.global_position:
+		body.free()
+		SignalBus.call_deferred("emit_signal", "ENEMY_DEFEATED")
