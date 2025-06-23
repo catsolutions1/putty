@@ -1,21 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1saceosyax1p"]
+[gd_scene load_steps=2 format=3 uid="uid://d1saceosyax1p"]
 
 [ext_resource type="Script" uid="uid://dfwtjea780yda" path="res://scripts/world.gd" id="1_k0juu"]
-[ext_resource type="PackedScene" uid="uid://moilnem53lri" path="res://scenes/levels/level_1.tscn" id="2_k0juu"]
-[ext_resource type="PackedScene" uid="uid://vjc61617wgqs" path="res://scenes/ui/input_settings.tscn" id="4_i7141"]
-[ext_resource type="PackedScene" uid="uid://bq10hkbsv5elf" path="res://scenes/ui/hud.tscn" id="5_71j4m"]
 
 [node name="world" type="Node2D"]
 script = ExtResource("1_k0juu")
-
-[node name="level_1" parent="." instance=ExtResource("2_k0juu")]
-
-[node name="gui" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="hud" parent="gui" instance=ExtResource("5_71j4m")]
-metadata/_edit_lock_ = true
-
-[node name="input_settings" parent="gui" instance=ExtResource("4_i7141")]
-visible = false
-metadata/_edit_lock_ = true

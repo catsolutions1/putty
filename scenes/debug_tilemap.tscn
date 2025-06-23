@@ -160,5 +160,5 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_8r3so")
 sources/1 = SubResource("TileSetAtlasSource_ga7el")
 
-[node name="debug_tilemap" type="TileMapLayer" groups=["player"]]
+[node name="debug_tilemap" type="TileMapLayer" groups=["wall"]]
 tile_set = SubResource("TileSet_ga7el")

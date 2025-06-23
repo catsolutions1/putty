@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bfhfhhkbc4iwi"]
 
 [ext_resource type="Script" uid="uid://8ldp23r5wcy6" path="res://scripts/entities/inverted.gd" id="1_72dv8"]
-[ext_resource type="Texture2D" uid="uid://ciavi47rf8fe7" path="res://assets/icon.svg" id="1_kvlu3"]
 [ext_resource type="PackedScene" uid="uid://cg307d2ally3i" path="res://scenes/components/grid_movement.tscn" id="2_stjdp"]
+[ext_resource type="Texture2D" uid="uid://dp3kilp5ysd8o" path="res://assets/slime.png" id="3_pbs6b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_72dv8"]
 size = Vector2(16, 16)
@@ -21,8 +21,7 @@ shape = SubResource("RectangleShape2D_72dv8")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 0, 1)
 position = Vector2(2.38419e-07, 2.38419e-07)
-scale = Vector2(0.125, 0.125)
-texture = ExtResource("1_kvlu3")
+texture = ExtResource("3_pbs6b")
 
 [node name="ray_up" type="RayCast2D" parent="."]
 position = Vector2(0, -8)

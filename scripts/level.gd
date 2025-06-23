@@ -8,8 +8,8 @@ func _ready() -> void:
 
 
 func _check_enemy_list() -> void:
-	for entity in $playable_space.get_overlapping_bodies():
-		if !entity.is_in_group("player"):
+	for body in $playable_space.get_overlapping_bodies():
+		if !body.is_in_group("player") && !body.is_in_group("wall"):
 			return
 	var goal = goal_scene.instantiate()
 	goal.global_position = goal_position
