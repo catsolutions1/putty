@@ -1,13 +1,12 @@
 [gd_scene load_steps=4 format=3 uid="uid://b1wp3r6moywls"]
 
-[ext_resource type="Texture2D" uid="uid://ciavi47rf8fe7" path="res://assets/icon.svg" id="1_c1763"]
 [ext_resource type="Script" uid="uid://c81kwmsjrwmjo" path="res://scripts/entities/goal.gd" id="1_tpphk"]
+[ext_resource type="Texture2D" uid="uid://b0wv5de64y5rk" path="res://assets/flag.png" id="2_tpphk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tpphk"]
 size = Vector2(16, 16)
 
 [node name="goal" type="Area2D"]
-modulate = Color(0, 1, 0, 1)
 script = ExtResource("1_tpphk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -15,8 +14,7 @@ shape = SubResource("RectangleShape2D_tpphk")
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.125, 0.125)
-texture = ExtResource("1_c1763")
-metadata/_edit_lock_ = true
+position = Vector2(0, -8)
+texture = ExtResource("2_tpphk")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

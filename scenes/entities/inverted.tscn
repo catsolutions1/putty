@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://dp3kilp5ysd8o" path="res://assets/slime.png" id="3_pbs6b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_72dv8"]
-size = Vector2(16, 16)
+size = Vector2(8, 8)
 
-[node name="inverted" type="CharacterBody2D"]
+[node name="inverted" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_72dv8")
 
 [node name="grid_movement" parent="." node_paths=PackedStringArray("character", "sprite") instance=ExtResource("2_stjdp")]
@@ -15,13 +15,13 @@ character = NodePath("..")
 scaling = -1
 sprite = NodePath("../Sprite2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_72dv8")
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 0, 1)
 position = Vector2(2.38419e-07, 2.38419e-07)
 texture = ExtResource("3_pbs6b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_72dv8")
 
 [node name="ray_up" type="RayCast2D" parent="."]
 position = Vector2(0, -8)

@@ -28,7 +28,9 @@ window/stretch/mode="viewport"
 [global_group]
 
 player=""
-wall=""
+world=""
+toggleable=""
+enemy=""
 
 [input]
 
