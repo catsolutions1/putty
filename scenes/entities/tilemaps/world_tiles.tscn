@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://dhcsdm3s481qv"]
+
+[ext_resource type="Texture2D" uid="uid://ecsiee01l812" path="res://assets/wall_tileset.png" id="1_v7ppd"]
+[ext_resource type="Texture2D" uid="uid://c57wmkwrh7y5c" path="res://assets/out_of_bounds.png" id="2_vinqx"]
+[ext_resource type="Texture2D" uid="uid://yrmc0qmdod4p" path="res://assets/green.png" id="3_l3san"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vinqx"]
+texture = ExtResource("1_v7ppd")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ydcew"]
+texture = ExtResource("2_vinqx")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l3san"]
+texture = ExtResource("3_l3san")
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ydcew"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_vinqx")
+sources/1 = SubResource("TileSetAtlasSource_ydcew")
+sources/4 = SubResource("TileSetAtlasSource_l3san")
+
+[node name="world_tiles" type="TileMapLayer" groups=["world"]]
+tile_set = SubResource("TileSet_ydcew")
