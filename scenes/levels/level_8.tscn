@@ -1,0 +1,28 @@
+[gd_scene load_steps=8 format=4 uid="uid://jf38mcqfrd07"]
+
+[ext_resource type="Script" uid="uid://btruqgliwah82" path="res://scripts/level.gd" id="1_ene4w"]
+[ext_resource type="PackedScene" uid="uid://dod1rrnrob5dk" path="res://scenes/entities/playable_space.tscn" id="2_h6r4t"]
+[ext_resource type="PackedScene" uid="uid://dhcsdm3s481qv" path="res://scenes/entities/tilemaps/wall_tiles.tscn" id="3_w2i51"]
+[ext_resource type="PackedScene" uid="uid://8knkpnb6v1lj" path="res://scenes/entities/tilemaps/toggleable_tiles.tscn" id="4_xsrpe"]
+[ext_resource type="PackedScene" uid="uid://bcvp4s8a53k00" path="res://scenes/entities/button.tscn" id="5_0kxia"]
+[ext_resource type="PackedScene" uid="uid://bfhfhhkbc4iwi" path="res://scenes/entities/inverted.tscn" id="6_5umh1"]
+[ext_resource type="PackedScene" uid="uid://1xxx18u4lumu" path="res://scenes/entities/player.tscn" id="7_v7ucw"]
+
+[node name="level_8" type="Node2D"]
+script = ExtResource("1_ene4w")
+
+[node name="playable_space" parent="." instance=ExtResource("2_h6r4t")]
+
+[node name="wall_tiles" parent="." instance=ExtResource("3_w2i51")]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAoAAAAAAAIAAAAPAAoAAAACAAIAAAAPAAAAAAACAAAAAAAPAAEAAAACAAEAAAAPAAIAAAACAAEAAAAPAAMAAAACAAEAAAAPAAQAAAACAAEAAAAPAAUAAAACAAEAAAAPAAYAAAACAAEAAAAPAAcAAAACAAEAAAAPAAgAAAACAAEAAAAPAAkAAAACAAEAAAAOAAoAAAABAAIAAAANAAoAAAABAAIAAAAMAAoAAAABAAIAAAALAAoAAAABAAIAAAAKAAoAAAABAAIAAAAJAAoAAAABAAIAAAAIAAoAAAABAAIAAAAHAAoAAAABAAIAAAAGAAoAAAABAAIAAAAFAAoAAAABAAIAAAAEAAoAAAABAAIAAAADAAoAAAABAAIAAAACAAoAAAABAAIAAAABAAoAAAABAAIAAAAAAAkAAAAAAAEAAAAAAAgAAAAAAAEAAAAAAAcAAAAAAAEAAAAAAAYAAAAAAAEAAAAAAAUAAAAAAAEAAAAAAAQAAAAAAAEAAAAAAAMAAAAAAAEAAAAAAAIAAAAAAAEAAAAAAAEAAAAAAAEAAAABAAAAAAABAAAAAAACAAAAAAABAAAAAAADAAAAAAABAAAAAAAEAAAAAAABAAAAAAAFAAAAAAABAAAAAAAGAAAAAAABAAAAAAAHAAAAAAABAAAAAAAIAAAAAAABAAAAAAAJAAAAAAABAAAAAAAKAAAAAAABAAAAAAANAAAAAAABAAAAAAAOAAAAAAABAAAAAAALAAAAAAABAAAAAAAMAAAAAAABAAAAAAA=")
+
+[node name="toggleable_tiles" parent="." instance=ExtResource("4_xsrpe")]
+
+[node name="button" parent="." instance=ExtResource("5_0kxia")]
+position = Vector2(64, 32)
+
+[node name="inverted" parent="." instance=ExtResource("6_5umh1")]
+position = Vector2(104, 40)
+
+[node name="player" parent="." instance=ExtResource("7_v7ucw")]
+position = Vector2(56, 120)

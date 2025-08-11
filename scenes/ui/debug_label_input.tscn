@@ -1,4 +1,0 @@
-[gd_scene format=3 uid="uid://clx2lvwkctr4g"]
-
-[node name="debug_label_input" type="Label"]
-text = "input key"
