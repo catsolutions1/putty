@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://djfddh78lxvbe"]
+
+[node name="win" type="Node2D"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_right = 260.0
+offset_bottom = 76.0
+text = "you win!"

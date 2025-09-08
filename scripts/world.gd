@@ -1,6 +1,7 @@
 extends Node2D
 
 var current_level: int = 1
+var max_level: int = 10
 
 func _ready() -> void:
 	SignalBus.GOAL_REACHED.connect(_level_clear)
@@ -21,4 +22,10 @@ func load_level() -> void:
 
 func _level_clear() -> void:
 	current_level += 1
-	load_level()
+	if current_level > max_level:
+		for child in get_children():
+			child.queue_free()
+		var level = load("res://scenes/win.tscn").instantiate()
+		call_deferred("add_child", level)
+	else:
+		load_level()

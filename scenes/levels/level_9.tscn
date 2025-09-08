@@ -1,0 +1,39 @@
+[gd_scene load_steps=9 format=4 uid="uid://bn1ce0slm1tua"]
+
+[ext_resource type="Script" uid="uid://btruqgliwah82" path="res://scripts/level.gd" id="1_6nuwh"]
+[ext_resource type="PackedScene" uid="uid://dod1rrnrob5dk" path="res://scenes/entities/playable_space.tscn" id="2_m2cpo"]
+[ext_resource type="PackedScene" uid="uid://dhcsdm3s481qv" path="res://scenes/entities/tilemaps/wall_tiles.tscn" id="3_kj523"]
+[ext_resource type="PackedScene" uid="uid://8knkpnb6v1lj" path="res://scenes/entities/tilemaps/toggleable_tiles.tscn" id="4_xampj"]
+[ext_resource type="PackedScene" uid="uid://bcvp4s8a53k00" path="res://scenes/entities/button.tscn" id="5_xev4b"]
+[ext_resource type="PackedScene" uid="uid://bfhfhhkbc4iwi" path="res://scenes/entities/inverted.tscn" id="6_v1y24"]
+[ext_resource type="PackedScene" uid="uid://1xxx18u4lumu" path="res://scenes/entities/player.tscn" id="7_ylwrn"]
+[ext_resource type="PackedScene" uid="uid://das3loaq6nrcu" path="res://scenes/entities/doubled.tscn" id="8_c68rt"]
+
+[node name="level_9" type="Node2D"]
+script = ExtResource("1_6nuwh")
+
+[node name="playable_space" parent="." instance=ExtResource("2_m2cpo")]
+
+[node name="wall_tiles" parent="." instance=ExtResource("3_kj523")]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAoAAAAAAAIAAAAPAAoAAAACAAIAAAAPAAAAAAACAAAAAAAPAAEAAAACAAEAAAAPAAIAAAACAAEAAAAPAAMAAAACAAEAAAAPAAQAAAACAAEAAAAPAAUAAAACAAEAAAAPAAYAAAACAAEAAAAPAAcAAAACAAEAAAAPAAgAAAACAAEAAAAPAAkAAAACAAEAAAAOAAoAAAABAAIAAAANAAoAAAABAAIAAAAMAAoAAAABAAIAAAALAAoAAAABAAIAAAAKAAoAAAABAAIAAAAJAAoAAAABAAIAAAAIAAoAAAABAAIAAAAHAAoAAAABAAIAAAAGAAoAAAABAAIAAAAFAAoAAAABAAIAAAAEAAoAAAABAAIAAAADAAoAAAABAAIAAAACAAoAAAABAAIAAAABAAoAAAABAAIAAAAAAAkAAAAAAAEAAAAAAAgAAAAAAAEAAAAAAAcAAAAAAAEAAAAAAAYAAAAAAAEAAAAAAAUAAAAAAAEAAAAAAAQAAAAAAAEAAAAAAAMAAAAAAAEAAAAAAAIAAAAAAAEAAAAAAAEAAAAAAAEAAAABAAAAAAABAAAAAAACAAAAAAABAAAAAAADAAAAAAABAAAAAAAEAAAAAAABAAAAAAAFAAAAAAABAAAAAAAGAAAAAAABAAAAAAAHAAAAAAABAAAAAAAIAAAAAAABAAAAAAAJAAAAAAABAAAAAAAKAAAAAAABAAAAAAANAAAAAAABAAAAAAAOAAAAAAABAAAAAAALAAAAAAABAAAAAAAMAAAAAAABAAAAAAD/////AQAAAAAAAAD//wAAAQAAAAAAAAD//wEAAQAAAAAAAAD//wIAAQAAAAAAAAD//wMAAQAAAAAAAAD//wQAAQAAAAAAAAD//wUAAQAAAAAAAAD//wYAAQAAAAAAAAD//wcAAQAAAAAAAAD//wgAAQAAAAAAAAD//wkAAQAAAAAAAAD//woAAQAAAAAAAAD//wsAAQAAAAAAAAAAAAsAAQAAAAAAAAABAAsAAQAAAAAAAAACAAsAAQAAAAAAAAADAAsAAQAAAAAAAAAEAAsAAQAAAAAAAAAFAAsAAQAAAAAAAAAGAAsAAQAAAAAAAAAHAAsAAQAAAAAAAAAIAAsAAQAAAAAAAAAJAAsAAQAAAAAAAAAKAAsAAQAAAAAAAAALAAsAAQAAAAAAAAAMAAsAAQAAAAAAAAANAAsAAQAAAAAAAAAOAAsAAQAAAAAAAAAPAAsAAQAAAAAAAAAQAAsAAQAAAAAAAAAQAAoAAQAAAAAAAAAQAAkAAQAAAAAAAAAQAAgAAQAAAAAAAAAQAAcAAQAAAAAAAAAQAAYAAQAAAAAAAAAQAAUAAQAAAAAAAAAQAAQAAQAAAAAAAAAQAAMAAQAAAAAAAAAQAAIAAQAAAAAAAAAQAAEAAQAAAAAAAAAQAAAAAQAAAAAAAAAQAP//AQAAAAAAAAAPAP//AQAAAAAAAAAOAP//AQAAAAAAAAANAP//AQAAAAAAAAAMAP//AQAAAAAAAAALAP//AQAAAAAAAAAKAP//AQAAAAAAAAAJAP//AQAAAAAAAAAIAP//AQAAAAAAAAAHAP//AQAAAAAAAAAGAP//AQAAAAAAAAAFAP//AQAAAAAAAAAEAP//AQAAAAAAAAADAP//AQAAAAAAAAACAP//AQAAAAAAAAABAP//AQAAAAAAAAAAAP//AQAAAAAAAAAGAAQAAAABAAEAAAAIAAQAAAABAAEAAAAEAAIAAAABAAEAAAAKAAIAAAABAAEAAAAHAAcAAAABAAEAAAAHAAYAAAABAAEAAAAIAAYAAAABAAEAAAA=")
+
+[node name="toggleable_tiles" parent="." instance=ExtResource("4_xampj")]
+tile_map_data = PackedByteArray("AAAHAAIAAAAAAAAAAAA=")
+
+[node name="button" parent="." instance=ExtResource("5_xev4b")]
+position = Vector2(96, 48)
+
+[node name="button2" parent="." instance=ExtResource("5_xev4b")]
+position = Vector2(128, 48)
+
+[node name="button3" parent="." instance=ExtResource("5_xev4b")]
+position = Vector2(128, 128)
+
+[node name="doubled" parent="." instance=ExtResource("8_c68rt")]
+position = Vector2(104, 40)
+
+[node name="inverted" parent="." instance=ExtResource("6_v1y24")]
+position = Vector2(216, 120)
+
+[node name="player" parent="." instance=ExtResource("7_ylwrn")]
+position = Vector2(40, 88)
