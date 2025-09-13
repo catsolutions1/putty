@@ -1,7 +1,7 @@
 extends Node2D
 
 var current_level: int = 1
-var max_level: int = 10
+@export var max_level: int = 10
 
 func _ready() -> void:
 	SignalBus.GOAL_REACHED.connect(_level_clear)

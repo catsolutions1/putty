@@ -1,8 +1,23 @@
-[gd_scene format=3 uid="uid://djfddh78lxvbe"]
+[gd_scene load_steps=3 format=3 uid="uid://djfddh78lxvbe"]
+
+[ext_resource type="Texture2D" uid="uid://dp3kilp5ysd8o" path="res://assets/slime.png" id="1_826fv"]
+[ext_resource type="Texture2D" uid="uid://b0wv5de64y5rk" path="res://assets/flag.png" id="2_iiocm"]
 
 [node name="win" type="Node2D"]
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_right = 260.0
-offset_bottom = 76.0
-text = "you win!"
+offset_top = 64.0
+offset_right = 128.0
+offset_bottom = 96.0
+text = "You win!"
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(64, 128)
+scale = Vector2(4, 4)
+texture = ExtResource("1_826fv")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(192, 96)
+scale = Vector2(4, 4)
+texture = ExtResource("2_iiocm")

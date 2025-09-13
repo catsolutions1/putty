@@ -24,7 +24,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if !body.is_in_group("player") && global_position == body.global_position:
+	if body.is_in_group("enemy") && global_position == body.global_position:
 		timer.start()
 		colliding = body
 
